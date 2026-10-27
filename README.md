@@ -4,6 +4,10 @@ Independent Product Live app connected to the original Firebase project.
 
 Run `npm run dev`. Build with `npm run build`. Run selector tests with `npm test`.
 
+The app uses TypeScript with strict type checking. Install dependencies with `npm install`. Run `npm run typecheck` to check types without building; `npm run build` also checks types before bundling. React components use `.tsx`, utilities and configuration use `.ts`, and tests run through `tsx`.
+
+Shared data and component types live in `src/types.ts`, with Vite environment and asset declarations in `src/vite-env.d.ts`. Flexible legacy Firebase fields are confined to the `FirebaseRecord` ingestion type; normalized vehicle, product, allocation, and UI data have explicit types.
+
 Real-time sources: Firebase Realtime Database date nodes for camera vehicle/product counts, Firestore `realtime/{date}` archive fallback, `erp/{date}` for vehicle/product allocations, and `products` for catalog names. Listeners are read-only; this app does not change database records.
 
 The app defaults to the current noon-to-noon production day and advances automatically. Open `/?date=2026-10-20` to inspect a specific production day, including next-morning scans. ERP matching checks the loading calendar date and production date. The vehicle and product follow the latest recognized timestamp, and counts are vehicle-specific.
